@@ -12,10 +12,11 @@ running = True
 forward = False
 
 while running:
-    data = clientSocket.recv(8)
+    data = clientSocket.recv(8).decode('utf-8')
     if data is 'w':
-        print('Forward toggle: ' + forward)
+        forward = not forward
+        print('Forward toggle: ' + str(forward))
 
-    print(data.decode('utf-8'))
+    print(data)
 
 clientSocket.close()
