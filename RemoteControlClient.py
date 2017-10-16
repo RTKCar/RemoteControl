@@ -1,7 +1,6 @@
 from pynput import keyboard
 from socket import *
 
-#datatyp för keyevents
 class KeyEvent:
     class Event:
         Pressed = 1
@@ -11,8 +10,6 @@ class KeyEvent:
         self.key = key
         self.type = type
 
-
-#hanterar knapptryck
 class KeyboardListener:
     def __init__(self):
         self._event = False
@@ -31,6 +28,7 @@ class KeyboardListener:
         if not self._keyStatus[key]:
             self._event = KeyEvent(key, KeyEvent.Event.Pressed)
             self._keyStatus[key] = True
+
 
     def on_release(self, key):
         key=key.char
@@ -54,19 +52,15 @@ try:
     clientSocket.connect(('localhost', 9000))
     listener.start()
     running = True
-except socket.timeout:
-    #kunde inte connecta
+except TimeoutError:
     print("Could not connect to server")
     exit(1)
 
 print("Connected to: localhost:9000")
 while running:
-    #starta om keyboard listner om den krashar
     if not listener.running:
         listener = keyboard.Listener(on_press=k.on_press, on_release=k.on_release)
         listener.start()
-
-    #kolla ifall någon knapp har tryckts och skicka input till servern
     event = k.getEvent()
     if event is not False:
         if event.type is KeyEvent.Event.Pressed:
