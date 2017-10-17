@@ -13,15 +13,12 @@ GPIO.setup(pwmPin, GPIO.OUT) # PWM pin set as output
 pwm = GPIO.PWM(pwmPin, 50)  # Initialize PWM on pwmPin 100Hz frequency
 
 host = 'localhost'
-
 serverSocket = socket(AF_INET, SOCK_STREAM)
 #print('1')
 serverSocket.bind((host, 9000))
 #print('2')
 serverSocket.listen(1)
-
-#print('väntar på client')
-#vänta på att klienten ska connecta
+#vanta på att klienten ska connecta
 (clientSocket, address) = serverSocket.accept()
 #print('accepted')
 serverSocket.close()
