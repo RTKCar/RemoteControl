@@ -93,12 +93,12 @@ while running:
         print('dc2', dc2)
             #time.sleep(1)
             #pwmS.stop()
-    if right and dc2 < 9:
+    if left and dc2 < 9:
         dc2 = dc2 + 1 * deltaTime
         if dc2 > 9:
             dc2 = 9
         pwmS.ChangeDutyCycle(dc2)
-    elif left and dc2 > 6:
+    elif right and dc2 > 6:
         dc2 = dc2 - 1 * deltaTime
         if dc2 < 6:
             dc2 = 6
