@@ -98,10 +98,10 @@ while running:
         dc2 = 9
         pwmS.ChangeDutyCycle(dc2)
     elif right:
-        dc2 = 6
+        dc2 = 5.5
         pwmS.ChangeDutyCycle(dc2)
     else:
-        dc2 = 7.5
+        dc2 = 7
         pwmS.ChangeDutyCycle(dc2)
 
     #print("data2: ",data2)
