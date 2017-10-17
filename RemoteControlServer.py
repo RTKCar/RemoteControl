@@ -99,7 +99,7 @@ while running:
             dc2 = 9
         pwmS.ChangeDutyCycle(dc2)
     elif right and dc2 > 6:
-        dc2 = dc2 - 1 * deltaTime
+        dc2 = dc2 - 0.1 * deltaTime
         if dc2 < 6:
             dc2 = 6
         pwmS.ChangeDutyCycle(dc2)
