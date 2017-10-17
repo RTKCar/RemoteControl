@@ -1,4 +1,16 @@
 from socket import *
+import RPi.GPIO as GPIO
+import time
+
+# Pin Definitons:
+pwmPin = 18 # Broadcom pin 18 (P1 pin 12)
+
+dc = 40 # duty cycle (0-100) for PWM pin
+
+# Pin Setup:
+GPIO.setmode(GPIO.BCM) # Broadcom pin-numbering scheme
+GPIO.setup(pwmPin, GPIO.OUT) # PWM pin set as output
+pwm = GPIO.PWM(pwmPin, 50)  # Initialize PWM on pwmPin 100Hz frequency
 
 host = 'localhost'
 
@@ -33,6 +45,10 @@ while running:
     if data is 'w':
         forward = not forward
         print('Forward toggle: ' + str(forward))
+        if forward:
+            pwm.start(dc)
+            time.sleep(2)
+            pwm.stop()
     elif data is 's':
         backward = not backward
         print('Backward toggle: ' + str(backward))
