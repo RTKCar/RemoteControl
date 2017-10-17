@@ -22,8 +22,6 @@ pwmS = GPIO.PWM(pwmPinSteering, 50)  # Initialize PWM on pwmPin 50Hz frequency
 # Initial state for Direction:
 GPIO.output(directionPin, GPIO.LOW)
 pwmS.start(dc2)
-time.sleep(1)
-pwmS.stop()
 
 def main(arg):
     print(arg)
