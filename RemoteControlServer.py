@@ -29,9 +29,11 @@ def main(arg):
 host = 'localhost'
 main(sys.argv[1])
 
+#TODO input arg
+
 serverSocket = socket(AF_INET, SOCK_STREAM)
 #print('1')
-serverSocket.bind((host, 9000))
+serverSocket.bind(('0.0.0.0', 9000))
 #print('2')
 serverSocket.listen(1)
 #vanta pa att klienten ska connecta
