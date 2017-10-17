@@ -84,19 +84,19 @@ while running:
     elif data is 'd':
         right = not right
         print('Right toggle: ' + str(right))
-        if right and dc2 < 8.5:
+        if right and dc2 < 8:
             dc2 = dc2 + 1*deltaTime
-            if dc2 > 8.5:
-                dc2 = 8.5
+            if dc2 > 8:
+                dc2 = 8
             pwmS.ChangeDutyCycle(dc2)
             #time.sleep(1)
             #pwmS.stop()
     elif data is 'a':
         left = not left
         print('Left toggle: ' + str(left))
-        if left and dc2 > 6.5:
-            if dc2 < 6.5:
-                dc2 = 6.5
+        if left and dc2 > 6:
+            if dc2 < 6:
+                dc2 = 6
             dc2 = dc2 - 1*deltaTime
             pwmS.ChangeDutyCycle(dc2)
             #time.sleep(1)
