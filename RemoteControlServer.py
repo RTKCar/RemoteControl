@@ -2,6 +2,8 @@ from socket import *
 import RPi.GPIO as GPIO
 import time
 import sys
+from datetime import timedelta
+from datetime import datetime
 
 # Pin Definitons:
 pwmPinThrottle = 18 # Broadcom pin 18 (P1 pin 12)
@@ -22,6 +24,7 @@ pwmS = GPIO.PWM(pwmPinSteering, 50)  # Initialize PWM on pwmPin 50Hz frequency
 # Initial state for Direction:
 GPIO.output(directionPin, GPIO.LOW)
 pwmS.start(dc2)
+timeStart = datetime.now()
 
 def main(arg):
     print(arg)
@@ -58,6 +61,10 @@ while running:
     #num = int(data)
     #data2 = clientSocket.recv(8).decode('ascii')
     data = clientSocket.recv(8).decode('utf-8')
+    timeNow = datetime.now()
+    deltaTime = (timeStart - timeNow).total_seconds()
+    global timeStart
+    timeStart = datetime.now()
     if data is 'w':
         forward = not forward
         print('Forward toggle: ' + str(forward))
@@ -78,7 +85,7 @@ while running:
         left = not left
         print('Left toggle: ' + str(left))
         if left and dc2 < 9:
-            dc2 = dc2 + 0.1
+            dc2 = dc2 + 1*deltaTime
             pwmS.ChangeDutyCycle(dc2)
             #time.sleep(1)
             #pwmS.stop()
@@ -86,7 +93,7 @@ while running:
         right = not right
         print('Right toggle: ' + str(right))
         if right and dc2 > 6:
-            dc2 = dc2 - 0.1
+            dc2 = dc2 - 1*deltaTime
             pwmS.ChangeDutyCycle(dc2)
             #time.sleep(1)
             #pwmS.stop()
