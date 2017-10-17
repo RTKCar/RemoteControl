@@ -38,6 +38,10 @@ class KeyboardListener:
             self._event.append(KeyEvent(key, KeyEvent.Event.Released))
             self._keyStatus[key] = False
 
+def main(arg):
+    print(arg)
+    global host
+    host = arg
 
 #Borde ligga i KeyboardListener klassen
 k = KeyboardListener()
@@ -45,7 +49,8 @@ listener = keyboard.Listener(on_press=k.on_press, on_release=k.on_release)
 
 running = False
 
-host = 'localhost'
+host = '192.168.43.101'
+main(sys.argv[1])
 
 #Skapar socket med Address Family 'Internet' och är en streaming socket
 clientSocket = socket(AF_INET, SOCK_STREAM)
@@ -76,10 +81,3 @@ while running:
             #data = event.key + ':0'
             #clientSocket.sendall(data.encode('utf-8'))
             clientSocket.sendall(event.key.encode('utf-8'))
-
-def main(arg):
-    print(arg)
-    global host
-    host = arg
-
-main(sys.argv[1])

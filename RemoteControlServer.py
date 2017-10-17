@@ -3,16 +3,31 @@ import RPi.GPIO as GPIO
 import time
 
 # Pin Definitons:
-pwmPin = 18 # Broadcom pin 18 (P1 pin 12)
+pwmPinThrottle = 18 # Broadcom pin 18 (P1 pin 12)
+directionPin = 23 # Broadcom pin 23 (P1 pin 16)
+pwmPinSteering = 12 # Broadcom pin 16 (P1 pin 32)
 
 dc = 40 # duty cycle (0-100) for PWM pin
 
 # Pin Setup:
 GPIO.setmode(GPIO.BCM) # Broadcom pin-numbering scheme
-GPIO.setup(pwmPin, GPIO.OUT) # PWM pin set as output
-pwm = GPIO.PWM(pwmPin, 50)  # Initialize PWM on pwmPin 100Hz frequency
+GPIO.setup(pwmPinThrottle, GPIO.OUT) # PWM pin set as output
+GPIO.setup(directionPin, GPIO.OUT) # PWM pin set as output
+GPIO.setup(pwmPinSteering, GPIO.OUT) # PWM pin set as output
+pwmT = GPIO.PWM(pwmPinThrottle, 50)  # Initialize PWM on pwmPin 100Hz frequency
+pwmS = GPIO.PWM(pwmPinThrottle, 50)  # Initialize PWM on pwmPin 100Hz frequency
+
+# Initial state for Direction:
+GPIO.output(directionPin, GPIO.LOW)
+
+def main(arg):
+    print(arg)
+    global host
+    host = arg
 
 host = 'localhost'
+main(sys.argv[1])
+
 serverSocket = socket(AF_INET, SOCK_STREAM)
 #print('1')
 serverSocket.bind((host, 9000))
@@ -42,12 +57,18 @@ while running:
         forward = not forward
         print('Forward toggle: ' + str(forward))
         if forward:
-            pwm.start(dc)
+            GPIO.output(directionPin, GPIO.HIGH)
+            pwmT.start(dc)
             time.sleep(2)
-            pwm.stop()
+            pwmT.stop()
     elif data is 's':
         backward = not backward
         print('Backward toggle: ' + str(backward))
+        if backward:
+            GPIO.output(directionPin, GPIO.HIGH)
+            pwmT.start(dc)
+            time.sleep(2)
+            pwmT.stop()
     elif data is 'a':
         left = not left
         print('Left toggle: ' + str(left))
@@ -60,10 +81,3 @@ while running:
     #print("num: ",num)
 
 clientSocket.close()
-
-def main(arg):
-    print(arg)
-    global host
-    host = arg
-
-main(sys.argv[1])
