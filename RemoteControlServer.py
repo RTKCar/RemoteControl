@@ -84,13 +84,13 @@ while running:
     elif data is 'd':
         right = not right
         print('Right toggle: ' + str(right))
-
+        print('dc2' , dc2)
             #time.sleep(1)
             #pwmS.stop()
     elif data is 'a':
         left = not left
         print('Left toggle: ' + str(left))
-
+        print('dc2', dc2)
             #time.sleep(1)
             #pwmS.stop()
     if right and dc2 < 8:
