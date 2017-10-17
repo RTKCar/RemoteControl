@@ -62,7 +62,7 @@ while running:
     #data2 = clientSocket.recv(8).decode('ascii')
     data = clientSocket.recv(8).decode('utf-8')
     timeNow = datetime.now()
-    deltaTime = (timeStart - timeNow).total_seconds()
+    deltaTime = (timeNow - timeStart).total_seconds()
     global timeStart
     timeStart = datetime.now()
     if data is 'w':
@@ -81,15 +81,15 @@ while running:
             pwmT.start(dc1)
         else:
             pwmT.stop()
-    elif data is 'd':
-        right = not right
-        print('Right toggle: ' + str(right) + " - " + str(deltaTime))
-        print('dc2' , dc2)
-            #time.sleep(1)
-            #pwmS.stop()
     elif data is 'a':
         left = not left
         print('Left toggle: ' + str(left) + " - " + str(deltaTime))
+        print('dc2' , dc2)
+            #time.sleep(1)
+            #pwmS.stop()
+    elif data is 'd':
+        right = not right
+        print('Right toggle: ' + str(right) + " - " + str(deltaTime))
         print('dc2', dc2)
             #time.sleep(1)
             #pwmS.stop()
