@@ -58,7 +58,7 @@ while running:
         forward = not forward
         print('Forward toggle: ' + str(forward))
         if forward:
-            GPIO.output(directionPin, GPIO.HIGH)
+            GPIO.output(directionPin, GPIO.LOW)
             pwmT.start(dc)
             time.sleep(2)
             pwmT.stop()
@@ -73,9 +73,17 @@ while running:
     elif data is 'a':
         left = not left
         print('Left toggle: ' + str(left))
+        if left:
+            pwmS.start(dc)
+            time.sleep(2)
+            pwmS.stop()
     elif data is 'd':
         right = not right
         print('Right toggle: ' + str(right))
+        if right:
+            pwmS.start(dc)
+            time.sleep(2)
+            pwmS.stop()
     else:
         print("data: ",data)
     #print("data2: ",data2)
