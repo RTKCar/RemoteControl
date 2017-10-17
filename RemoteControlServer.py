@@ -17,7 +17,7 @@ GPIO.setup(pwmPinThrottle, GPIO.OUT) # PWM pin set as output
 GPIO.setup(directionPin, GPIO.OUT) # PWM pin set as output
 GPIO.setup(pwmPinSteering, GPIO.OUT) # PWM pin set as output
 pwmT = GPIO.PWM(pwmPinThrottle, 50)  # Initialize PWM on pwmPin 50Hz frequency
-pwmS = GPIO.PWM(pwmPinThrottle, 50)  # Initialize PWM on pwmPin 50Hz frequency
+pwmS = GPIO.PWM(pwmPinSteering, 50)  # Initialize PWM on pwmPin 50Hz frequency
 
 # Initial state for Direction:
 GPIO.output(directionPin, GPIO.LOW)
