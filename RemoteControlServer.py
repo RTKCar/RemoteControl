@@ -64,7 +64,7 @@ while running:
     timeNow = datetime.now()
     deltaTime = (timeNow - timeStart).total_seconds()
     global timeStart
-    timeStart = datetime.now()
+    timeStart = timeNow
     if data is 'w':
         forward = not forward
         print('Forward toggle: ' + str(forward))
@@ -94,7 +94,7 @@ while running:
             #time.sleep(1)
             #pwmS.stop()
     if left and dc2 < 9:
-        dc2 = dc2 + 1 * deltaTime
+        dc2 = dc2 + 0.1 * deltaTime
         if dc2 > 9:
             dc2 = 9
         pwmS.ChangeDutyCycle(dc2)
