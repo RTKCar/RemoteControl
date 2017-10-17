@@ -1,5 +1,6 @@
 from pynput import keyboard
 from socket import *
+import sys
 
 class KeyEvent:
     class Event:
