@@ -92,8 +92,6 @@ while running:
             pwmS.start(dc2)
             time.sleep(1)
             pwmS.stop()
-    else:
-        print("data: ",data)
     #print("data2: ",data2)
     #print("num: ",num)
 
