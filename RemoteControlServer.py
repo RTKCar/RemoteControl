@@ -66,7 +66,7 @@ while running:
         if forward:
             GPIO.output(directionPin, GPIO.LOW)
             pwmT.start(dc1)
-            time.sleep(2)
+        else:
             pwmT.stop()
     elif data is 's':
         backward = not backward
@@ -74,24 +74,24 @@ while running:
         if backward:
             GPIO.output(directionPin, GPIO.HIGH)
             pwmT.start(dc1)
-            time.sleep(2)
+        else:
             pwmT.stop()
     elif data is 'a':
         left = not left
         print('Left toggle: ' + str(left))
         if left:
             dc2 = dc2 - 0.5
-            pwmS.start(dc2)
-            time.sleep(1)
-            pwmS.stop()
+            pwmS.ChangeDutyCycle(dc2)
+            #time.sleep(1)
+            #pwmS.stop()
     elif data is 'd':
         right = not right
         print('Right toggle: ' + str(right))
         if right:
             dc2 = dc2 + 0.5
-            pwmS.start(dc2)
-            time.sleep(1)
-            pwmS.stop()
+            pwmS.ChangeDutyCycle(dc2)
+            #time.sleep(1)
+            #pwmS.stop()
     #print("data2: ",data2)
     #print("num: ",num)
 
