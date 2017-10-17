@@ -18,7 +18,7 @@ serverSocket = socket(AF_INET, SOCK_STREAM)
 serverSocket.bind((host, 9000))
 #print('2')
 serverSocket.listen(1)
-#vanta på att klienten ska connecta
+#vanta pa att klienten ska connecta
 (clientSocket, address) = serverSocket.accept()
 #print('accepted')
 serverSocket.close()
