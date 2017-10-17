@@ -65,6 +65,7 @@ while running:
     deltaTime = (timeNow - timeStart).total_seconds()
     global timeStart
     timeStart = timeNow
+    print("Delta time: " + str(deltaTime))
     if data is 'w':
         forward = not forward
         print('Forward toggle: ' + str(forward))
