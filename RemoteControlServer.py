@@ -14,7 +14,6 @@ pwm = GPIO.PWM(pwmPin, 50)  # Initialize PWM on pwmPin 100Hz frequency
 
 host = 'localhost'
 
-#skapa en streamingsocket med adresstyp internet (TCP) som väntar på klienten
 serverSocket = socket(AF_INET, SOCK_STREAM)
 #print('1')
 serverSocket.bind((host, 9000))
